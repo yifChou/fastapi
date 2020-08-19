@@ -36,8 +36,7 @@ def connect_it_100(database_name):
 # print(type(result))
 # cursor.close()
 # conn.close()
-db,conn = connect_sql(database_name="tms")
-fms_db,fms_conn = connect_it_100(database_name="fms_db")
+
 def excute_sql(db,conn,sql):
     try:
         print("执行前：",sql)
@@ -192,10 +191,12 @@ if __name__=="__main__":
     bag_code
     袋子编码
     :return:'''
+    db, conn = connect_sql(database_name="tms")
+    fms_db, fms_conn = connect_it_100(database_name="fms_db")
     ydstring = 4916402008193000
     bag_code =2081930
-    yd_number= 15
-    bag_num= 2
+    yd_number= 5
+    bag_num= 1
     A = auto_add_bags(yd_number=yd_number,ydstring=ydstring,bag_num=bag_num,bag_code=bag_code,customerID=15)
     for i in A:
         print(i)

@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from connect_mysql import auto_add_bags
 from ramdom_sequence import save_bag_record
+from request_dts import dts_batch_get,dts_batch_baglist_get
 app = FastAPI()
 
 class Item(BaseModel):
@@ -11,9 +12,19 @@ class Item(BaseModel):
 class dts_batch(BaseModel):
     bag_number:int
     yd_number: int
+    batch_number:int
     url:str
-    bag_list:list
-    is_offer:bool = None
+@app.post("/dts/batch")
+def get_dts_batch(data:dts_batch):
+    if "http://" not in data.url or "https://" not in data.url:
+        if data.bag_number >= 1 and data.yd_number >= 1 and data.batch_number >= 1:
+            flag = dts_batch_get(url=data.url,bag_number=data.bag_number,waybills=data.yd_number,patch_number=data.batch_number)
+            return flag
+        else:
+            return {"error": "袋子/运单/批次数量必须大于1"}
+    else:
+        return {"error": "url地址填写有误"}
+
 @app.get("/")
 def read_root():
     return {"hello":"World"}

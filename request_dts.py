@@ -211,33 +211,24 @@ def dts_batch_get(url,bag_number,waybills,patch_number):
     :return:
     '''
     dts_batch_data = save_dts_batch_record(input_batch_number=patch_number)
-    number = dts_batch_data[2]  # 2020081810 批次号
-    patch_number = patch_number #10 多少个批次
-    bag_number = bag_number
-    waybills = waybills
-    systemcode = "YT"
-    if systemcode:
-        if type(bag_number) == int:
-            for i in range(patch_number):
-                '''线上环境脚本'''
-                bag_list = shipping_order(shipping_number="send_" + str(number + i), bag_number=bag_number,
-                                          waybills=waybills,
-                                          url=url, system_code=systemcode)
-                batch_creation_old(batch_number="BA_" + str(number + (i + 1)), bag_list=bag_list, url=url
-                                   , system_code=systemcode)
-        else:
-            j = 1
-            for bag_number in bag_number:
-                '''线上环境脚本'''
-                bag_list = shipping_order(shipping_number="send_" + str(number + j), bag_number=bag_number,
-                                          waybills=waybills,
-                                          url=url, system_code=systemcode)
-                batch_creation_old(batch_number="BA_" + str(number + j), bag_list=bag_list, url=url
-                                   , system_code=systemcode)
-
-                j = j + 1
+    if dts_batch_data[0]:
+        number = dts_batch_data[1]  # 2020081810 批次号
+        patch_number = patch_number #10 多少个批次
+        bag_number = bag_number
+        waybills = waybills
+        systemcode = "YT"
+        if systemcode:
+            if type(bag_number) == int:
+                for i in range(patch_number):
+                    '''线上环境脚本'''
+                    bag_list = shipping_order(shipping_number="send_" + str(number + i), bag_number=bag_number,
+                                              waybills=waybills,
+                                              url=url, system_code=systemcode)
+                    batch_creation_old(batch_number="BA_" + str(number + (i + 1)), bag_list=bag_list, url=url
+                                       , system_code=systemcode)
+                return {"data":"批次生成成功"+str(number)+"条,请到【空运配板】查看数据"}
     else:
-        print("请填写客户代码")
+        return {"error":"遇到错误,请重新请求生成数据"}
 def dts_batch_baglist_get(url,bag_number,waybills):
     '''
     :param url:请求地址
@@ -272,3 +263,4 @@ def dts_batch_baglist_get(url,bag_number,waybills):
         print("请填写客户代码")
 if __name__ == "__main__":
     print("test")
+    dts_batch_get(url="http://192.168.88.175:5000",waybills=2,patch_number=2,bag_number=2)

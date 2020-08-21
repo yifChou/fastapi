@@ -17,7 +17,7 @@ def connect_sql(database_name):
 def connect_it_100(database_name):
     try:
         conn = pymysql.connect(
-            host = "IT-100",
+            host = "192.168.122.178",
             port = 3308,
             user="mysql",
             password="a135246A",
@@ -193,8 +193,8 @@ if __name__=="__main__":
     :return:'''
     db, conn = connect_sql(database_name="tms")
     fms_db, fms_conn = connect_it_100(database_name="fms_db")
-    ydstring = 4916402008193000
-    bag_code =2081930
+    ydstring = 4916402008194000
+    bag_code =2081940
     yd_number= 5
     bag_num= 1
     A = auto_add_bags(yd_number=yd_number,ydstring=ydstring,bag_num=bag_num,bag_code=bag_code,customerID=15)

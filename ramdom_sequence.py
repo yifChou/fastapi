@@ -66,27 +66,68 @@ def save_bag_record(input_yd_number,input_bag_numer):
         database.close()
 def generate_ramdom(db):
     pass
-def read_all():
-    database = shelve.open('database202008.db', writeback=True)
+def read_all(db_name):
+    database = shelve.open(db_name+".db", writeback=True)
+    print("打印所有item")
     for key, value in database.items():
-        print("打印所有item",key, value)
+        print("item",key, value)
 def new_pid(db,pid):
     key_list = []
     flag = 1
     for key in db.keys():
         key_list.append(key)
-    last_pid = key_list[-1]
-    for key in db.keys():
-        if key == pid:
-            print("PID重复",key)
+    if len(key_list) == 0:
+        return "tms_0"
+    else:
+        last_pid = key_list[-1]
+        for key in db.keys():
+            if key == pid:
+                print("PID重复",key)
+                flag = 0
+                break
+        if flag:
+            newpid = pid
+        else:
+            pid1,pid2 = last_pid.split("_")
+            newpid = pid1+ "_" + str(int(pid2)+1)
+        return newpid
+def store_batch(db,pid,input_batch_code,input_batch_number):
+    if if_exit_batch(db,input_batch_code):
+        tms_bag = {}
+        tms_bag['batch_code'] = input_batch_code
+        tms_bag['batch_number'] = input_batch_number
+        db[pid] = tms_bag
+        print("Store information: pid is %s, information is %s" % (pid, tms_bag))
+        return 1
+    else:
+        return 0
+def if_exit_batch(db,input_batch_code):
+    flag = 1
+    for key, value in db.items():
+        print("打印所有item",key, value)
+        if int(db[key]["batch_code"]) < input_batch_code < int(db[key]["batch_code"])+db[key]["batch_number"]:
+            print("有重复批次起始号",input_batch_code)
             flag = 0
             break
     if flag:
-        newpid = pid
+        return flag
     else:
-        pid1,pid2 = last_pid.split("_")
-        newpid = pid1+ "_" + str(int(pid2)+1)
-    return newpid
+        return flag
+def save_dts_batch_record(input_batch_number):
+    database = shelve.open('dts_batch_number_202008.db', writeback=True)
+    pid =new_pid(database, "dtsbatch_1")
+    #input_batch_code = 20200821
+    #input_batch_number = 10
+    start_batch = int(str(random.randint(10, 99)) + time.strftime("%Y%m%d", time.localtime())[2:] + str(random.randint(10, 99)))
+    try:
+        flag = store_batch(database, pid,start_batch,input_batch_number )
+        #update_people(database, pid+str(i), yd_code+i, bag_code+i)
+        #lookup_people(database, pid+str(i))
+        return flag,start_batch,input_batch_number
+    finally:
+        database.close()
 if __name__ == "__main__":
-    save_bag_record(input_yd_number=10,input_bag_numer=20)
-    read_all()
+    #save_bag_record(input_yd_number=10,input_bag_numer=20)
+    a = save_dts_batch_record(10)
+    read_all("dts_batch_number_202008")
+    print(a)

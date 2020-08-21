@@ -8,7 +8,12 @@ class Item(BaseModel):
     name:str
     price:float
     is_offer:bool = None
-
+class dts_batch(BaseModel):
+    bag_number:int
+    yd_number: int
+    url:str
+    bag_list:list
+    is_offer:bool = None
 @app.get("/")
 def read_root():
     return {"hello":"World"}
@@ -31,9 +36,9 @@ def get_tms_bag(yd_number:int,bag_num:int,customer:int):
     '''
     # ydstring = 4916402008171000
     # bag_code = 2081710
-    auto_data = save_bag_record(input_yd_number=yd_number,input_bag_numer=bag_num)
     # yd_number = 1000
     # bag_num = 50
+    auto_data = save_bag_record(input_yd_number=yd_number,input_bag_numer=bag_num)#自动生成ydstring,bag_code
     if auto_data[0]:
         ydstring = auto_data[1]
         bag_code = auto_data[2]

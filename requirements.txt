@@ -1,3 +1,4 @@
 PyMySQL==0.8.1
+requests==2.18.4
 pydantic==1.6.1
 fastapi==0.61.0

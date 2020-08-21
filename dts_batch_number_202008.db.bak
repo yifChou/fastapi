@@ -5,3 +5,5 @@
 'dtsbatch_4', (2048, 53)
 'dtsbatch_5', (2560, 51)
 'dtsbatch_6', (3072, 53)
+'dtsbatch_7', (3584, 53)
+'dtsbatch_8', (4096, 53)

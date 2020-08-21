@@ -226,7 +226,7 @@ def dts_batch_get(url,bag_number,waybills,patch_number):
                                               url=url, system_code=systemcode)
                     batch_creation_old(batch_number="BA_" + str(number + (i + 1)), bag_list=bag_list, url=url
                                        , system_code=systemcode)
-                return {"data":"批次生成成功"+str(number)+"条,请到【空运配板】查看数据"}
+                return {"data":"成功!!! 批次生成"+str(patch_number)+"条,请到【空运配板】查看数据"}
     else:
         return {"error":"遇到错误,请重新请求生成数据"}
 def dts_batch_baglist_get(url,bag_number,waybills):

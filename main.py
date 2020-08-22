@@ -14,6 +14,10 @@ class dts_batch(BaseModel):
     yd_number: int
     batch_number:int
     url:str
+class dts_batch_list(BaseModel):
+    bag_list:list
+    yd_number: int
+    url:str
 @app.post("/dts/batch")
 def get_dts_batch(data:dts_batch):
     if "http://" not in data.url or "https://" not in data.url:
@@ -22,6 +26,16 @@ def get_dts_batch(data:dts_batch):
             return flag
         else:
             return {"error": "袋子/运单/批次数量必须大于1"}
+    else:
+        return {"error": "url地址填写有误"}
+@app.post("/dts/batch_list")
+def get_dts_batch_list(data:dts_batch_list):
+    if "http://" not in data.url or "https://" not in data.url:
+        if len(data.bag_list) >= 1 and data.yd_number >= 1:
+            flag = dts_batch_baglist_get(url=data.url,bag_list=data.bag_list,waybills=data.yd_number)
+            return flag
+        else:
+            return {"error": "袋子/运单数量必须大于1"}
     else:
         return {"error": "url地址填写有误"}
 

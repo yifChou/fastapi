@@ -219,17 +219,20 @@ def dts_batch_get(url,bag_number,waybills,patch_number):
         systemcode = "YT"
         if systemcode:
             if type(bag_number) == int:
+                res_list = []
                 for i in range(patch_number):
                     '''线上环境脚本'''
                     bag_list = shipping_order(shipping_number="send_" + str(number + i), bag_number=bag_number,
                                               waybills=waybills,
                                               url=url, system_code=systemcode)
-                    batch_creation_old(batch_number="BA_" + str(number + (i + 1)), bag_list=bag_list, url=url
+                    res_batch = batch_creation_old(batch_number="BA_" + str(number + (i + 1)), bag_list=bag_list, url=url
                                        , system_code=systemcode)
-                return {"data":"成功!!! 批次生成"+str(patch_number)+"条,请到【空运配板】查看数据"}
+                    res_list.append(res_batch)
+                return {"data":"成功!!! 批次生成"+str(patch_number)+"条,请到【空运配板】查看数据",
+                        "detail":res_list}
     else:
         return {"error":"遇到错误,请重新请求生成数据"}
-def dts_batch_baglist_get(url,bag_number,waybills):
+def dts_batch_baglist_get(url,bag_list,waybills):
     '''
     :param url:请求地址
     :param bag_number:袋子是list
@@ -243,24 +246,33 @@ def dts_batch_baglist_get(url,bag_number,waybills):
     # bag_number = [['BAG033002462910', 'BAG033002462911', 'BAG033002462912', 'BAG033002462913', 'BAG033002462914', 'BAG033002462915', 'BAG033002462916', 'BAG033002462917', 'BAG033002462918', 'BAG033002462919']]
     # bag_number = [['BAG033002081710', 'BAG033002081711', 'BAG033002081712', 'BAG033002081713', 'BAG033002081714', 'BAG033002081715', 'BAG033002081716', 'BAG033002081717', 'BAG033002081718', 'BAG033002081719', 'BAG033002081720', 'BAG033002081721', 'BAG033002081722', 'BAG033002081723', 'BAG033002081724', 'BAG033002081725', 'BAG033002081726', 'BAG033002081727', 'BAG033002081728', 'BAG033002081729', 'BAG033002081730', 'BAG033002081731', 'BAG033002081732', 'BAG033002081733', 'BAG033002081734', 'BAG033002081735', 'BAG033002081736', 'BAG033002081737', 'BAG033002081738', 'BAG033002081739', 'BAG033002081740', 'BAG033002081741', 'BAG033002081742', 'BAG033002081743', 'BAG033002081744', 'BAG033002081745', 'BAG033002081746', 'BAG033002081747', 'BAG033002081748', 'BAG033002081749', 'BAG033002081750', 'BAG033002081751', 'BAG033002081752', 'BAG033002081753', 'BAG033002081754', 'BAG033002081755', 'BAG033002081756', 'BAG033002081757']]
     #run_select = "线上" #UAT 测试
-    b_number = len(bag_number)
+    b_number = len(bag_list)
     dts_batch_data = save_dts_batch_record(input_batch_number=b_number)
-    number = dts_batch_data[2]  # 2020081810 批次号
+    number = dts_batch_data[1]  # 2020081810 批次号
     waybills = waybills
     systemcode = "YT"
     if systemcode:
         j = 1
-        for bag_number in bag_number:
+        res_list = []
+        for bag_number in bag_list:
             bag_list = shipping_order(shipping_number="send_" + str(number + j), bag_number=bag_number,
                                       waybills=waybills,
                                       url=url, system_code=systemcode)
-            batch_creation_old(batch_number="BA_" + str(number + j), bag_list=bag_list, url=url
+            res_batch = batch_creation_old(batch_number="BA_" + str(number + j), bag_list=bag_list, url=url
                                , system_code=systemcode)
-
+            res_list.append(res_batch)
             j = j + 1
+        return {"data": " 批次生成" + str(b_number) + "条,请到【空运配板】查看数据",
+                "detail":res_list}
 
     else:
-        print("请填写客户代码")
+        return {"error": "遇到错误,请重新请求生成数据"}
 if __name__ == "__main__":
     print("test")
-    dts_batch_get(url="http://192.168.88.175:5000",waybills=2,patch_number=2,bag_number=2)
+    bag_list=[[
+        "BAG0333220082130",
+        "BAG0333220082131"
+    ]]
+    #dts_batch_get(url="http://192.168.88.175:5000",waybills=2,patch_number=2,bag_number=2)
+    a = dts_batch_baglist_get(url="http://192.168.88.175:5000",bag_list=bag_list,waybills=2)
+    print(a)

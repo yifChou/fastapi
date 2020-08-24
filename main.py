@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,UploadFile,File
 from pydantic import BaseModel
 from connect_mysql import auto_add_bags
 from ramdom_sequence import save_bag_record
 from request_dts import dts_batch_get,dts_batch_baglist_get
+import time
+from starlette.responses import FileResponse
 app = FastAPI()
 
 class Item(BaseModel):
@@ -73,3 +75,16 @@ def get_tms_bag(yd_number:int,bag_num:int,customer:int):
         return {"bag_list":A}
     else:
         return {"error":"遇到错误,请重新请求生成数据"}
+@app.post("/file_upload")
+async def file_upload(file: UploadFile = File(...)):
+    start = time.time()
+    try:
+        res = await file.read()
+        with open(file.filename, "wb") as f:
+            f.write(res)
+        return {"message": "success", 'time': time.time() - start, 'filename': file.filename}
+    except Exception as e:
+        return {"message": str(e), 'time': time.time() - start, 'filename': file.filename}
+@app.get("/file")
+def file():
+    return FileResponse('./ATS-TP-BC2020048.mm', filename='ATS-TP-BC2020048.mm')

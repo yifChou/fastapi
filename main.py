@@ -6,6 +6,8 @@ from request_dts import dts_batch_get,dts_batch_baglist_get
 import time
 from starlette.responses import FileResponse
 from logger import logger
+import traceback
+logger.error(traceback.format_exc())
 app = FastAPI()
 
 class Item(BaseModel):

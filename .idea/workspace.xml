@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4faa2136-e7f3-4893-bd0b-baa339dc46b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/logger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/2020-08-27_error.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,35 +24,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="44" />
+            <state relative-caret-position="489">
+              <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/logger.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="13" column="3962" selection-start-line="13" selection-start-column="3962" selection-end-line="13" selection-end-column="3962" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/logs/2020-08-27_error.log">
-          <provider selected="true" editor-type-id="LogFileEditorProvider">
-            <state relative-caret-position="90">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -71,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -160,16 +141,16 @@
         <option value="$PROJECT_DIR$/ramdom_sequence.py" />
         <option value="$PROJECT_DIR$/connect_mysql.py" />
         <option value="$PROJECT_DIR$/request_dts.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/logger.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="173" />
-    <option name="y" value="54" />
+    <option name="x" value="107" />
+    <option name="y" value="66" />
     <option name="width" value="1688" />
-    <option name="height" value="1047" />
+    <option name="height" value="1090" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -183,11 +164,6 @@
             <path>
               <item name="fastapi_app" type="b2602c69:ProjectViewProjectNode" />
               <item name="fastapi_app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fastapi_app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fastapi_app" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -356,7 +332,7 @@
       <workItem from="1597721881979" duration="20708000" />
       <workItem from="1597890785392" duration="25539000" />
       <workItem from="1598232307228" duration="599000" />
-      <workItem from="1598253693514" duration="9489000" />
+      <workItem from="1598253693514" duration="11526000" />
     </task>
     <task id="LOCAL-00001" summary="水电费">
       <created>1597820788822</created>
@@ -470,22 +446,35 @@
       <option name="project" value="LOCAL" />
       <updated>1598498606377</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="水电费">
+      <created>1598506239495</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1598506239495</updated>
+    </task>
+    <task id="LOCAL-00018" summary="水电费">
+      <created>1598512849306</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1598512849314</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64546000" />
+    <option name="totallyTimeSpent" value="66583000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="189" y="59" width="1688" height="1047" extended-state="0" />
-    <editor active="true" />
+    <frame x="107" y="66" width="1688" height="1090" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24385749" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4987715" visible="true" weight="0.34173056" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4987715" visible="true" weight="0.42154813" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -493,7 +482,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5012285" side_tool="true" visible="true" weight="0.34173056" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5012285" side_tool="true" visible="true" weight="0.42154813" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -518,7 +507,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>9</line>
+          <line>7</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -552,13 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/request_dts.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8010">
@@ -589,22 +571,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="13" column="3962" selection-start-line="13" selection-start-column="3962" selection-end-line="13" selection-end-column="3962" />
+        <state relative-caret-position="600">
+          <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>

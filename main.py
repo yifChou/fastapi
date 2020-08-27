@@ -5,8 +5,6 @@ from ramdom_sequence import save_bag_record
 from request_dts import dts_batch_get,dts_batch_baglist_get
 # import time
 # from starlette.responses import FileResponse
-from logger import logger
-import traceback
 app = FastAPI()
 
 class Item(BaseModel):
@@ -45,16 +43,11 @@ def get_dts_batch_list(data:dts_batch_list):
 
 @app.get("/")
 def read_root():
-    try:
-        logger.info({"hello":"World1"})
-        logger.info(f"日志记录")
-        logger.error(f"xxx")
-        return {"hello":"World1"}
-    except Exception as e:
-        logger.error(traceback.format_exc())
+
+    return {"hello":"World1"}
+
 @app.get("/hello")
 def read_root():
-    logger.info({"hello": "World2"})
     return {"hello":"World2"}
 
 @app.get("/items/{item_id}")

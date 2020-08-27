@@ -7,7 +7,6 @@ import time
 from starlette.responses import FileResponse
 from logger import logger
 import traceback
-logger.error(traceback.format_exc())
 app = FastAPI()
 
 class Item(BaseModel):
@@ -46,10 +45,13 @@ def get_dts_batch_list(data:dts_batch_list):
 
 @app.get("/")
 def read_root():
-    logger.info({"hello":"World1"})
-    logger.info(f"日志记录")
-    logger.error(f"xxx")
-    return {"hello":"World1"}
+    try:
+        logger.info({"hello":"World1"})
+        logger.info(f"日志记录")
+        logger.error(f"xxx")
+        return {"hello":"World1"}
+    except Exception as e:
+        logger.error(traceback.format_exc())
 @app.get("/hello")
 def read_root():
     logger.info({"hello": "World2"})

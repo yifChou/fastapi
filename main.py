@@ -43,10 +43,10 @@ def get_dts_batch_list(data:dts_batch_list):
 
 @app.get("/")
 def read_root():
-    return {"hello":"World"}
+    return {"hello":"World1"}
 @app.get("/hello")
 def read_root():
-    return {"hello":"World"}
+    return {"hello":"World2"}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int,q: str = None):

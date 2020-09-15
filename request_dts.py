@@ -58,6 +58,7 @@ def order(waybill_number):
     data = {"waybill_number": waybill_number + time.strftime("%m%d%H%M%S")+str(random.randint(10000,99999))+str(random.randint(10000,99999)),
             "refer_number": waybill_number + str(random.randint(1000, 9999)),
             "server_type": str(random.randint(1, 4)),
+            "checkin_time":time.strftime("%Y-%m-%d %H:%M:%S"),
             "package_weight": str(random.randint(10, 100)),
             "weight_type": str(random.randint(1, 4)),
             "package_long": str(random.randint(100, 1000)),
@@ -108,6 +109,7 @@ def add_bag(waybills,update_type,system_code="YT"):
 "bag_overlength": 222.222,
 "bag_overwidth": 333.333,
 "bag_overheight": 444.444,
+"packaging_material_weight":random.random()
  }
     print(data["bag_number"])
     return data
@@ -270,8 +272,8 @@ def dts_batch_baglist_get(url,bag_list,waybills):
 if __name__ == "__main__":
     print("test")
     bag_list=[[
-        "BAG0333220082130",
-        "BAG0333220082131"
+        "BAG0333220082139",
+        "BAG0333220082138"
     ]]
     #dts_batch_get(url="http://192.168.88.175:5000",waybills=2,patch_number=2,bag_number=2)
     a = dts_batch_baglist_get(url="http://192.168.88.175:5000",bag_list=bag_list,waybills=2)

@@ -156,7 +156,7 @@ def batch_creation_old(batch_number,bag_list,url = "http://192.168.88.175:5000",
         product_line_name = random.choice(["AMS-IT-CP","新增推送代码","测试路由","AMS-MA-P-BK"]) #
     #["ASDSD","AMS的产品线2","AMS的产品线","特惠普货","测试02","末端-有空运清关1","末端-有空运清关","ASDSD","AMS的产品线2","AMS的产品线","末端","test2"]
     elif url =="http://dts.uat.yunexpress.com":
-        product_line_name = random.choice(["ASDSD", "AMS的产品线2", "AMS的产品线", "测试02"])
+        product_line_name = random.choice(["UAT-A", "UAT-B", "UAT-C"])
     else:
         product_line_name = random.choice(["推送产品线测试","合并路由","AMS-MA-P-BK","AMS-IT-CP"])
     tape_color = random.choice(["青,青","蓝蓝","紫紫","赤赤","橙橙","黄黄","绿绿"])

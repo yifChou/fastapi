@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from connect_mysql import auto_add_bags
 from ramdom_sequence import save_bag_record
 from request_dts import dts_batch_get,dts_batch_baglist_get
+from fms.request_fms import *
 import time
 from starlette.responses import FileResponse
 app = FastAPI()
@@ -20,6 +21,40 @@ class dts_batch_list(BaseModel):
     bag_list:list
     yd_number: int
     url:str
+class fms_lading_fee(BaseModel):
+    bag_number:int
+    yd_number: int
+    customerCode:str
+    servercode:str
+    source:int
+    Charge_Weight:float
+    currency:str
+    ProductCode:list
+@app.post("/fms/air_lading_fee")
+def get_fms_lading_fee(data:fms_lading_fee):
+    waybill_number = random.randint(10000000, 99999999)
+    lading_number=lading_generate()
+    customerCode=data.customerCode
+    servercode=data.servercode
+    source=data.source
+    yt_number=data.yd_number
+    Charge_Weight=data.Charge_Weight
+    fee_number=random.randint(1,3)
+    currency=data.currency
+    url.ProductCode=random.choice(data.ProductCode)
+    if data.bag_number >= 1 and data.yd_number >= 1 :
+        # 公用袋号——运单
+        bags, shippers, bag_shipper_list = data_bag_shipper_list(bag_number=data.bag_number, waybill_number=waybill_number, customerCode=customerCode,yt_number=yt_number,
+                                                                 servercode=servercode, transfertype=1, source=source)
+        # # #空运提单费用
+        lading_number = request_airlading_withbag_fee(lading_number=lading_number, bag_list=bags,
+                                                      shipper_list=shippers, customerCode=customerCode,
+                                                      servercode=servercode, Charge_Weight=Charge_Weight,
+                                                      currency=currency, fee_number=fee_number, source=source)
+
+        return lading_number
+    else:
+        return {"error": "袋子/运单数量必须大于1"}
 @app.post("/dts/batch")
 def get_dts_batch(data:dts_batch):
     if "http://" not in data.url or "https://" not in data.url:
@@ -90,3 +125,6 @@ async def file_upload(file: UploadFile = File(...)):
 @app.get("/file")
 def file():
     return FileResponse('./ATS-TP-BC2020048.mm', filename='ATS-TP-BC2020048.mm')
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app,host='0.0.0.0',port=8080)

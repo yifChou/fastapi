@@ -36,8 +36,8 @@ def connect_it_100(database_name):
 # print(type(result))
 # cursor.close()
 # conn.close()
-db, conn = connect_sql(database_name="tms")
-fms_db, fms_conn = connect_it_100(database_name="fms_db")
+#db, conn = connect_sql(database_name="tms")
+#fms_db, fms_conn = connect_it_100(database_name="fms_db")
 def excute_sql(db,conn,sql):
     try:
         print("执行前：",sql)

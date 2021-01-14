@@ -17,15 +17,15 @@ def connect_sql(database_name):
 def connect_it_100(database_name):
     try:
         conn = pymysql.connect(
-            host = "192.168.122.178",
-            port = 3308,
+            host="IT-100",
+            port=3308,
             user="mysql",
             password="a135246A",
             database=database_name,
             charset="utf8")
         print(conn)
         cursor = conn.cursor()
-        return cursor,conn
+        return cursor, conn
     except Exception as e:
         print(e)
 

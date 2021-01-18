@@ -2593,7 +2593,7 @@ if __name__ == "__main__":
         # # #空运提单费用
         lading_number = request_airlading_withbag_fee(lading_number=str(lading_index+i), bag_list=bags, shipper_list=shippers, customerCode=customerCode, servercode=servercode, Charge_Weight=Charge_Weight,currency=currency,fee_number=fee_number, source=source)
         # # # 清关提单费用
-        #request_customer_withbag_fee(lading_number=lading_number, bag_list=bags, shipper_list=shippers, qg_servercode=qg_servercode, customerCode=customerCode, if_vat=0, source=1)
+        request_customer_withbag_fee(lading_number=lading_number, bag_list=bags, shipper_list=shippers, qg_servercode=qg_servercode, customerCode=customerCode, if_vat=0, source=1)
         # # # 清关VAT费用
         #request_customer_withbag_fee(lading_number=lading_number, bag_list=bags, shipper_list=shippers,qg_servercode=qg_servercode, customerCode=customerCode,Charge_Weight=Charge_Weight, Currency=currency, if_vat=1, source=1)
         # # # 重派费用-不经过报价                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        #海外重派-不经过报价

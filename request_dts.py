@@ -145,7 +145,7 @@ def update_shipping_bags(number,type,bag_number):
 #     for i in range(500):
 #         add_shipping_bags(shipping_code, random.choice([100, 120, 130, 140, 150, 160, 80, 90,70]))
 #     print(shipping_code)
-def batch_creation_old(batch_number,bag_list,url = "http://192.168.88.175:5000",system_code="YT"):
+def batch_creation_old(batch_number,bag_list,head_tran_type,url = "http://192.168.88.175:5000",system_code="YT"):
     '''
     发货单创建-并绑定袋子
     :param shipping_number: 发货单号
@@ -168,7 +168,8 @@ def batch_creation_old(batch_number,bag_list,url = "http://192.168.88.175:5000",
             "og_id":74,
             "shipping_time":time.strftime("%Y-%m-%d %H:%M:%S"),
             "bag_numbers":bag_list,
-            "system_code": system_code
+            "system_code": system_code,
+            "head_tran_type":head_tran_type
           }
     print(data)
     response = requests.post(url=url + "/api/ExternalApi/CreateBatch",json=data)
@@ -204,7 +205,7 @@ def batch_creation(batch_number,bag_number,waybills):
     print(response.text)
     return response.text
 
-def dts_batch_get(url,bag_number,waybills,patch_number):
+def dts_batch_get(url,bag_number,waybills,patch_number,head_tran_type):
     '''
     :param url:请求地址
     :param bag_number:每个批次袋子数量
@@ -227,7 +228,7 @@ def dts_batch_get(url,bag_number,waybills,patch_number):
                     bag_list = shipping_order(shipping_number="send_" + str(number + i), bag_number=bag_number,
                                               waybills=waybills,
                                               url=url, system_code=systemcode)
-                    res_batch = batch_creation_old(batch_number="BA_" + str(number + (i + 1)), bag_list=bag_list, url=url
+                    res_batch = batch_creation_old(batch_number="BA_" + str(number + (i + 1)), bag_list=bag_list,head_tran_type=head_tran_type,url=url
                                        , system_code=systemcode)
                     res_list.append(res_batch)
                 return {"data":"成功!!! 批次生成"+str(patch_number)+"条,请到【空运配板】查看数据",

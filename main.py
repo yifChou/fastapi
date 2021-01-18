@@ -17,6 +17,7 @@ class dts_batch(BaseModel):
     yd_number: int
     batch_number:int
     url:str
+    head_tran_type:str
 class dts_batch_list(BaseModel):
     bag_list:list
     yd_number: int
@@ -55,11 +56,43 @@ def get_fms_lading_fee(data:fms_lading_fee):
         return lading_number
     else:
         return {"error": "袋子/运单数量必须大于1"}
+
+class fms_custom_lading_fee(BaseModel):
+    bag_number:int
+    yd_number: int
+    customerCode:str
+    servercode:str
+    source:int
+    Charge_Weight:float
+    currency:str
+    ProductCode:list
+    if_vat:int
+@app.post("/fms/custom_lading_fee")
+def get_fms_lading_fee(data:fms_custom_lading_fee):
+    waybill_number = random.randint(10000000, 99999999)
+    lading_number=lading_generate()
+    customerCode=data.customerCode
+    qg_servercode=data.servercode
+    source=data.source
+    yt_number=data.yd_number
+    if_vat = data.if_vat
+    url.ProductCode=random.choice(data.ProductCode)
+    if data.bag_number >= 1 and data.yd_number >= 1 :
+        # 公用袋号——运单
+        bags, shippers, bag_shipper_list = data_bag_shipper_list(bag_number=data.bag_number, waybill_number=waybill_number, customerCode=customerCode,yt_number=yt_number,
+                                                                 servercode=servercode, transfertype=1, source=source)
+        # # #清关提单费用
+        lading_number = request_customer_withbag_fee(lading_number=lading_number, bag_list=bags, shipper_list=shippers,
+                                     qg_servercode=qg_servercode, customerCode=customerCode, if_vat=if_vat, source=source)
+
+        return lading_number
+    else:
+        return {"error": "袋子/运单数量必须大于1"}
 @app.post("/dts/batch")
 def get_dts_batch(data:dts_batch):
     if "http://" not in data.url or "https://" not in data.url:
         if data.bag_number >= 1 and data.yd_number >= 1 and data.batch_number >= 1:
-            flag = dts_batch_get(url=data.url,bag_number=data.bag_number,waybills=data.yd_number,patch_number=data.batch_number)
+            flag = dts_batch_get(url=data.url,bag_number=data.bag_number,waybills=data.yd_number,patch_number=data.batch_number,head_tran_type=data.head_tran_type)
             return flag
         else:
             return {"error": "袋子/运单/批次数量必须大于1"}
@@ -127,4 +160,4 @@ def file():
     return FileResponse('./ATS-TP-BC2020048.mm', filename='ATS-TP-BC2020048.mm')
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app,host='0.0.0.0',port=8080)
+    uvicorn.run(app,host='0.0.0.0',port=8008)
